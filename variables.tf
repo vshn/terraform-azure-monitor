@@ -40,6 +40,7 @@ variable "alerts" {
     severity         = optional(number, 2)
     window_size      = optional(string, "PT5M")
     frequency        = optional(string, "PT1M")
+    tags             = optional(map(string), {})
   }))
   description = "Map of metric alerts to create. The map key is used as the alert name."
   default     = {}

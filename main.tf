@@ -16,6 +16,7 @@ resource "azurerm_monitor_metric_alert" "this" {
   name                = each.key
   resource_group_name = var.resource_group_name
   scopes              = each.value.scopes
+  tags                = each.value.tags
   description         = each.value.description
   severity            = each.value.severity
   window_size         = each.value.window_size
