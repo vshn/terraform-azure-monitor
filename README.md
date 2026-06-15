@@ -24,6 +24,7 @@ module "monitoring" {
       operator         = "GreaterThan"
       threshold        = 80
       severity         = 2
+      tags             = { label = "OnCall" }
     }
   }
 }
@@ -54,9 +55,10 @@ module "monitoring" {
 | `severity` | `number` | `2` | Alert severity 0–4 (0 = critical, 4 = verbose). |
 | `window_size` | `string` | `PT5M` | Evaluation window in ISO 8601 duration format. |
 | `frequency` | `string` | `PT1M` | Evaluation frequency in ISO 8601 duration format. |
+| `tags` | `map(string)` | `{}` | Tags to apply to the alert rule, e.g. `{ label = "OnCall" }`. |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| `action_group_id` | The ID of the Opsgenie action group. Useful for attaching additional alerts outside this module. |
+| `action_group_id` | The ID of the action group. Useful for attaching additional alerts outside this module. |
