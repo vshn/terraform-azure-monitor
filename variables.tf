@@ -30,17 +30,19 @@ variable "webhook_receiver_name" {
 
 variable "alerts" {
   type = map(object({
-    description      = string
-    scopes           = list(string)
-    metric_namespace = string
-    metric_name      = string
-    aggregation      = string
-    operator         = string
-    threshold        = number
-    severity         = optional(number, 2)
-    window_size      = optional(string, "PT5M")
-    frequency        = optional(string, "PT1M")
-    tags             = optional(map(string), {})
+    description              = string
+    scopes                   = list(string)
+    metric_namespace         = string
+    metric_name              = string
+    aggregation              = string
+    operator                 = string
+    threshold                = number
+    severity                 = optional(number, 2)
+    window_size              = optional(string, "PT5M")
+    frequency                = optional(string, "PT1M")
+    tags                     = optional(map(string), {})
+    target_resource_type     = optional(string, null)
+    target_resource_location = optional(string, null)
   }))
   description = "Map of metric alerts to create. The map key is used as the alert name."
   default     = {}

@@ -13,14 +13,16 @@ resource "azurerm_monitor_action_group" "this" {
 resource "azurerm_monitor_metric_alert" "this" {
   for_each = var.alerts
 
-  name                = each.key
-  resource_group_name = var.resource_group_name
-  scopes              = each.value.scopes
-  tags                = each.value.tags
-  description         = each.value.description
-  severity            = each.value.severity
-  window_size         = each.value.window_size
-  frequency           = each.value.frequency
+  name                     = each.key
+  resource_group_name      = var.resource_group_name
+  scopes                   = each.value.scopes
+  tags                     = each.value.tags
+  target_resource_type     = each.value.target_resource_type
+  target_resource_location = each.value.target_resource_location
+  description              = each.value.description
+  severity                 = each.value.severity
+  window_size              = each.value.window_size
+  frequency                = each.value.frequency
 
   criteria {
     metric_namespace = each.value.metric_namespace
