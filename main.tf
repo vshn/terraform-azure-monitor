@@ -33,6 +33,7 @@ resource "azurerm_monitor_metric_alert" "this" {
   }
 
   action {
-    action_group_id = azurerm_monitor_action_group.this.id
+    action_group_id    = azurerm_monitor_action_group.this.id
+    webhook_properties = each.value.webhook_properties
   }
 }

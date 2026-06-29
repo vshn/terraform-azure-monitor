@@ -41,6 +41,7 @@ variable "alerts" {
     window_size              = optional(string, "PT5M")
     frequency                = optional(string, "PT1M")
     tags                     = optional(map(string), {})
+    webhook_properties       = optional(map(string), {})
     target_resource_type     = optional(string, null)
     target_resource_location = optional(string, null)
   }))

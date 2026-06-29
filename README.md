@@ -23,8 +23,8 @@ module "monitoring" {
       aggregation      = "Average"
       operator         = "GreaterThan"
       threshold        = 80
-      severity         = 2
-      tags             = { label = "OnCall" }
+      severity           = 2
+      webhook_properties = { tags = "OnCall,postgres,prod" }
     }
   }
 }
@@ -55,7 +55,8 @@ module "monitoring" {
 | `severity` | `number` | `2` | Alert severity 0–4 (0 = critical, 4 = verbose). |
 | `window_size` | `string` | `PT5M` | Evaluation window in ISO 8601 duration format. |
 | `frequency` | `string` | `PT1M` | Evaluation frequency in ISO 8601 duration format. |
-| `tags` | `map(string)` | `{}` | Tags to apply to the alert rule, e.g. `{ label = "OnCall" }`. |
+| `tags` | `map(string)` | `{}` | ARM resource tags on the alert rule. Visible in Azure only — **not** included in the common-alert-schema webhook payload, so these do **not** reach downstream receivers like Opsgenie. |
+| `webhook_properties` | `map(string)` | `{}` | Custom key/value pairs delivered in the webhook payload (under `data.customProperties` with the common alert schema). Use this to pass routing/tagging data to Opsgenie, e.g. `{ tags = "OnCall,postgres,prod" }`. A comma-separated value is split into individual Opsgenie tags when the integration's Tags field is mapped to `{{ customProperties.tags }}`. |
 
 ## Outputs
 
